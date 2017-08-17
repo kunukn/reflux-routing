@@ -7,11 +7,14 @@
     "dist"
   ],
   "scripts": {
+    "start": "npm run demo",
+    "demo": "npm-run-all -p -r build-dev demo-serve",
+    "demo-serve": "browser-sync start --server \"examples\" --files \"**/*\" --index \"index.html\" --port 3333 --cors",
     "lint": "./node_modules/.bin/eslint lib",
     "lint-fix": "./node_modules/.bin/eslint lib --fix",
     "test": "mocha tests/*.js --compilers js:babel-core/register",
-    "build": "\"./node_modules/.bin/babel\" lib -d dist",
-    "prepublish": "\"./node_modules/.bin/babel\" lib -d dist",
+    "build": "./node_modules/.bin/babel lib -d dist",
+    "prepublish": "./node_modules/.bin/babel lib -d dist",
     "build-dev": "watchify examples/index.jsx -o examples/bundle.js -t [ babelify ]",
     "build-tabs": "watchify examples/tabs.jsx -o examples/tabs.bundle.js -t [ babelify ]"
   },
@@ -32,10 +35,12 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babelify": "^7.3.0",
+    "browser-sync": "^2.18.13",
     "eslint": "^3.19.0",
     "eslint-config-airbnb-base": "^11.2.0",
     "eslint-plugin-import": "^2.7.0",
     "mocha": "^3.4.2",
+    "npm-run-all": "^4.0.2",
     "react-dom": "^15.6.1",
     "watchify": "^3.9.0"
   }
